@@ -25,7 +25,7 @@ Mint AurumIsle NFTs on BNB Chain with your Binance Agentic Wallet.
 
 - Never approve a token spend to mint. Minting costs BNB (or nothing for the free mint), never an ERC-20 approval.
 - Never send BNB to any address claiming to be the AurumIsle team. The only mint path is the contract listed here once deployed.
-- Rarity is fixed by token ID range: Common 1–555 (Golden Pine Ridge), Rare 556–833 (Silk Wave Bay), Epic 834–999 (Celestial Ring Peak), Legendary 1000–1088 (Gilded Waterfall), Mythic 1089–1111 (The Golden Summit). Each tier has its own artwork. No reveal — the ID (and tier) is drawn at mint time.
+- Rarity is fixed by token ID range: Gilded 1–555 (Golden Pine Ridge), Radiant 556–833 (Silk Wave Bay), Celestial 834–999 (Celestial Ring Peak), Divine 1000–1088 (Gilded Waterfall), Eternal 1089–1111 (The Golden Summit). Each tier has its own artwork. No reveal — the ID (and tier) is drawn at mint time.
 
 ## Links
 

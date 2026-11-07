@@ -203,7 +203,7 @@ footer a{color:var(--gold)}
     <div class="kicker">How it works</div>
     <h2>Free first, then gold</h2>
     <div class="flow">
-      <div class="step"><div class="n">01</div><h3>First mint — FREE</h3><p>One free mint per Agent ID wallet. Gas only. Your isle is drawn from the 1,111 — Common to Mythic.</p></div>
+      <div class="step"><div class="n">01</div><h3>First mint — FREE</h3><p>One free mint per Agent ID wallet. Gas only. Your isle is drawn from the 1,111 — Gilded to Eternal.</p></div>
       <div class="step"><div class="n">02</div><h3>Mints #2–11 — 0.0003 BNB</h3><p>Each further mint costs a flat 0.0003 BNB (about $0.21). Every paid mint also earns 120,000 AURUM, claimable on-chain.</p></div>
     </div>
   </section>
@@ -252,13 +252,13 @@ Each paid mint earns 120,000 AURUM (claimable on-chain).</div>
   <section id="tiers">
     <div class="kicker">The five vistas</div>
     <h2>One isle, five rarities</h2>
-    <p>Each rarity has its own artwork. Rarity is decided by token id — and your id is drawn at random, so any mint can land any tier, Common to Mythic.</p>
+    <p>Each rarity has its own artwork. Rarity is decided by token id — and your id is drawn at random, so any mint can land any tier, Gilded to Eternal.</p>
     <div class="tiers">
-      <div class="tier"><img src="assets/tier-common.jpg" alt="Common — Golden Pine Ridge" loading="lazy"><div class="t-body"><div class="t-name">Common</div><div class="t-range">1 – 555 &middot; 555</div><div class="t-vista">Golden Pine Ridge</div></div></div>
-      <div class="tier"><img src="assets/tier-rare.jpg" alt="Rare — Silk Wave Bay" loading="lazy"><div class="t-body"><div class="t-name">Rare</div><div class="t-range">556 – 833 &middot; 278</div><div class="t-vista">Silk Wave Bay</div></div></div>
-      <div class="tier"><img src="assets/tier-epic.jpg" alt="Epic — Celestial Ring Peak" loading="lazy"><div class="t-body"><div class="t-name">Epic</div><div class="t-range">834 – 999 &middot; 166</div><div class="t-vista">Celestial Ring Peak</div></div></div>
-      <div class="tier"><img src="assets/tier-legendary.jpg" alt="Legendary — Gilded Waterfall" loading="lazy"><div class="t-body"><div class="t-name">Legendary</div><div class="t-range">1000 – 1088 &middot; 89</div><div class="t-vista">Gilded Waterfall</div></div></div>
-      <div class="tier"><img src="assets/tier-mythic.jpg" alt="Mythic — The Golden Summit" loading="lazy"><div class="t-body"><div class="t-name">Mythic</div><div class="t-range">1089 – 1111 &middot; 23</div><div class="t-vista">The Golden Summit</div></div></div>
+      <div class="tier"><img src="assets/tier-common.jpg" alt="Gilded — Golden Pine Ridge" loading="lazy"><div class="t-body"><div class="t-name">Gilded</div><div class="t-range">1 – 555 &middot; 555</div><div class="t-vista">Golden Pine Ridge</div></div></div>
+      <div class="tier"><img src="assets/tier-rare.jpg" alt="Radiant — Silk Wave Bay" loading="lazy"><div class="t-body"><div class="t-name">Radiant</div><div class="t-range">556 – 833 &middot; 278</div><div class="t-vista">Silk Wave Bay</div></div></div>
+      <div class="tier"><img src="assets/tier-epic.jpg" alt="Celestial — Celestial Ring Peak" loading="lazy"><div class="t-body"><div class="t-name">Celestial</div><div class="t-range">834 – 999 &middot; 166</div><div class="t-vista">Celestial Ring Peak</div></div></div>
+      <div class="tier"><img src="assets/tier-legendary.jpg" alt="Divine — Gilded Waterfall" loading="lazy"><div class="t-body"><div class="t-name">Divine</div><div class="t-range">1000 – 1088 &middot; 89</div><div class="t-vista">Gilded Waterfall</div></div></div>
+      <div class="tier"><img src="assets/tier-mythic.jpg" alt="Eternal — The Golden Summit" loading="lazy"><div class="t-body"><div class="t-name">Eternal</div><div class="t-range">1089 – 1111 &middot; 23</div><div class="t-vista">The Golden Summit</div></div></div>
     </div>
   </section>
 
@@ -447,11 +447,11 @@ async function rpcCall(to, data){
   return null;
 }
 function tierOf(id){
-  if(id<=555) return ["Common","Golden Pine Ridge"];
-  if(id<=833) return ["Rare","Silk Wave Bay"];
-  if(id<=999) return ["Epic","Celestial Ring Peak"];
-  if(id<=1088) return ["Legendary","Gilded Waterfall"];
-  return ["Mythic","The Golden Summit"];
+  if(id<=555) return ["Gilded","Golden Pine Ridge"];
+  if(id<=833) return ["Radiant","Silk Wave Bay"];
+  if(id<=999) return ["Celestial","Celestial Ring Peak"];
+  if(id<=1088) return ["Divine","Gilded Waterfall"];
+  return ["Eternal","The Golden Summit"];
 }
 var liveMinted = null;
 async function readLive(){

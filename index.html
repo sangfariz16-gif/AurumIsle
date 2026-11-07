@@ -160,7 +160,6 @@ footer a{color:var(--gold)}
     <p class="lede">A floating isle of gold between heaven and earth. Your <b>first mint is FREE</b> — then <b>0.0003 BNB</b> each, up to <b>11 per wallet</b>. Every paid mint earns <b>120,000 AURUM</b>. Minted only by AI agents holding a Binance <b>.ai Agent ID</b>.</p>
     <div class="hero-cta">
       <button class="btn" id="heroAgentBtn" type="button">&#129302; Mint with your agent</button>
-      <a class="btn btn-ghost" href="#mint">Mint now</a>
     </div>
   </section>
 
@@ -287,7 +286,7 @@ Each paid mint earns 120,000 AURUM (claimable on-chain).</div>
     <div class="kicker">Mint live</div>
     <h2>Mint your isle</h2>
     <div class="card">
-      <p>First mint per wallet is <b>FREE</b>. Mints #2–11 cost <b>0.0003 BNB</b> each. Every paid mint earns <b>120,000 AURUM</b> — claimable on-chain after mint. Agent-only: your wallet needs a .ai Agent ID.</p>
+      <p>Minting is <b>agent-only</b> — only an AI agent holding a .ai Agent ID (SPACE ID) on a Binance Agentic Wallet can mint. First mint per wallet is <b>FREE</b>. Mints #2–11 cost <b>0.0003 BNB</b> each. Every paid mint earns <b>120,000 AURUM</b> — claimable on-chain after mint.</p>
       <div class="qty-row">
         <button type="button" id="qtyMinus" aria-label="Fewer">&minus;</button>
         <span class="qty" id="qty">1</span>
@@ -295,8 +294,7 @@ Each paid mint earns 120,000 AURUM (claimable on-chain).</div>
         <span class="fine" id="qtyPrice" style="margin-left:6px">FREE &middot; 1 mint</span>
       </div>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
-        <button class="btn" id="mintBtn" type="button">Mint now</button>
-        <button class="btn btn-ghost" id="connectBtn" type="button">Connect wallet</button>
+        <a class="btn" href="#agents">&#129302; Mint with your agent</a>
       </div>
       <p class="fine" id="mintNote" style="margin-top:10px"></p>
     </div>
@@ -330,9 +328,8 @@ Each paid mint earns 120,000 AURUM (claimable on-chain).</div>
   <section class="faq">
     <div class="kicker">FAQ</div>
     <h2>Questions</h2>
-    <details><summary>How do I mint?</summary><p>Connect a wallet that holds a .ai Agent ID, or mint with your AI agent through the Binance Agentic Wallet. Your first mint is free — gas only.</p></details>
+    <details><summary>How do I mint?</summary><p>Only through your AI agent, using the Binance Agentic Wallet. Your agent's wallet needs a .ai Agent ID (SPACE ID). Give it the copyable prompt in the For AI Agents section. Your first mint is free — gas only.</p></details>
     <details><summary>What is AURUM?</summary><p>AURUM is a BEP-20 bonus token. Each paid mint earns 120,000 AURUM, claimable on-chain from the token contract. Free mints earn none. Max 1,200,000 AURUM per wallet.</p></details>
-    <details><summary>Can I mint from a normal wallet (MetaMask)?</summary><p>The mint button works from any wallet, but the contract only accepts mints from wallets holding a .ai Agent ID. Without one, the transaction reverts.</p></details>
     <details><summary>Can I resell my isle?</summary><p>Yes — it is a standard transferable BEP-721. It can be listed on NFT marketplaces once they index the collection. Royalty is 5% where the marketplace honors it.</p></details>
     <details><summary>Why 1,111?</summary><p>Small supply, five distinct artworks — one per rarity tier. The pattern follows the sold-out 1,111 collections: free first mint, a cheap paid price, and a token that pays per paid mint.</p></details>
   </section>
@@ -480,7 +477,6 @@ async function readLive(){
     : "Mint is open · the orbit is filling";
   if(!isOpen) $("ringPhase").textContent = "Mint hasn\u2019t opened yet";
   if(!PREVIEW){
-    $("mintBtn").disabled = !isOpen;
     $("mintNote").textContent = isOpen ? "" : "Mint is closed right now.";
   }
 }
@@ -488,6 +484,8 @@ function updateQty(){
   var q = parseInt($("qty").textContent, 10);
   var paid = Math.max(0, q - FREE_PER_WALLET);
   $("qtyPrice").textContent = (paid === 0 ? "FREE" : (Number(PRICE_WEI * BigInt(paid)) / 1e18).toFixed(4) + " BNB") + " · " + q + (q === 1 ? " mint" : " mints");
+  var ap = $("agentPrompt");
+  if(ap) ap.textContent = ap.textContent.replace(/I want to mint: \d+/, "I want to mint: " + q);
 }
 $("qtyMinus").addEventListener("click", function(){
   var q = parseInt($("qty").textContent, 10);
@@ -556,45 +554,7 @@ if(shareBtn){
     window.open(url, "_blank", "noopener");
   });
 }
-var connected = null;
-$("connectBtn").addEventListener("click", async function(){
-  if(!window.ethereum){ $("mintNote").textContent = "No wallet found in this browser — open this page in a wallet browser or install one."; return; }
-  try{
-    var accs = await window.ethereum.request({method:"eth_requestAccounts"});
-    connected = accs[0];
-    $("connectBtn").textContent = connected.slice(0,6) + "…" + connected.slice(-4);
-    $("mintNote").textContent = "Connected: " + connected;
-  }catch(e){ $("mintNote").textContent = "Wallet connection was cancelled."; }
-});
-$("mintBtn").addEventListener("click", async function(){
-  if(PREVIEW){ $("mintNote").textContent = "Preview — mint opens 20:00 UTC."; return; }
-  if(!window.ethereum){ $("mintNote").textContent = "No wallet found in this browser."; return; }
-  try{
-    if(!connected){
-      var accs = await window.ethereum.request({method:"eth_requestAccounts"});
-      connected = accs[0];
-    }
-    var chainId = await window.ethereum.request({method:"eth_chainId"});
-    if(chainId !== "0x38"){
-      try{ await window.ethereum.request({method:"wallet_switchEthereumChain", params:[{chainId:"0x38"}]}); }
-      catch(e){
-        await window.ethereum.request({method:"wallet_addEthereumChain", params:[{chainId:"0x38", chainName:"BNB Smart Chain", nativeCurrency:{name:"BNB", symbol:"BNB", decimals:18}, rpcUrls:["https://bsc-dataseed.binance.org/"], blockExplorerUrls:["https://bscscan.com/"]}]});
-      }
-    }
-    var qty = parseInt($("qty").textContent, 10);
-    var quote = await rpcCall(CONTRACT, QUOTE_SEL + padAddr(connected) + hex(qty).slice(2).padStart(64, "0"));
-    if(quote === null){ $("mintNote").textContent = "Could not read the price — try again."; return; }
-    var value = hex(BigInt(quote));
-    $("mintNote").textContent = "Confirm the mint in your wallet…";
-    var txHash = await window.ethereum.request({method:"eth_sendTransaction", params:[{from:connected, to:CONTRACT, value:value, data:MINT_SEL + hex(qty).slice(2).padStart(64, "0")}]});
-    $("mintNote").textContent = "Mint sent: " + txHash + " — wait for confirmation, then check your token below.";
-    readLive();
-  }catch(e){
-    $("mintNote").textContent = "Mint failed or was cancelled: " + (e && e.message ? e.message.slice(0, 160) : e);
-  }
-});
 if(PREVIEW){
-  $("mintBtn").disabled = true;
   $("mintNote").textContent = "Preview — mint opens 20:00 UTC.";
   $("previewBanner").style.display = "block";
 }else{

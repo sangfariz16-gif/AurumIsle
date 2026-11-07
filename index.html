@@ -149,7 +149,7 @@ footer a{color:var(--gold)}
     </nav>
   </div>
 </header>
-<div class="preview-banner" id="previewBanner">PREVIEW — contracts are predicted, mint opens after deploy. Nothing here mints yet.</div>
+<div class="preview-banner" id="previewBanner">PREVIEW — contracts are deployed, mint opens 20:00 UTC. Nothing here mints yet.</div>
 
 <main class="wrap">
   <!-- HERO -->
@@ -305,12 +305,12 @@ Each paid mint earns 120,000 AURUM (claimable on-chain).</div>
   <!-- CONTRACT -->
   <section id="contract">
     <div class="kicker">Contract</div>
-    <h2>Live contracts — predicted, deploys on launch</h2>
+    <h2>Live contracts — deployed</h2>
     <div class="card">
       <table class="contract-table">
         <tr><td>Network</td><td>BNB Chain (chain 56)</td></tr>
-        <tr><td>NFT</td><td><code>0xC52a979C20C5a43e5Be4Ffa6d1A4DD50069D5E2D</code><br><span class="fine">Aurum Isle (AURISLE) — predicted address, verified at deploy.</span></td></tr>
-        <tr><td>Token</td><td><code>0x1478422c8a2A38f0516538F07cE3cDD762582c42</code><br><span class="fine">Aurum (AURUM) — 1B total: 540M bonus pool, 460M treasury. Predicted address.</span></td></tr>
+        <tr><td>NFT</td><td><code>0xC52a979C20C5a43e5Be4Ffa6d1A4DD50069D5E2D</code><br><span class="fine">Aurum Isle (AURISLE) — deployed, <a href="https://bscscan.com/address/0xC52a979C20C5a43e5Be4Ffa6d1A4DD50069D5E2D">view on BscScan</a>. Mint opens 20:00 UTC.</span></td></tr>
+        <tr><td>Token</td><td><code>0x1478422c8a2A38f0516538F07cE3cDD762582c42</code><br><span class="fine">Aurum (AURUM) — 1B total: 540M bonus pool, 460M treasury. <a href="https://bscscan.com/address/0x1478422c8a2A38f0516538F07cE3cDD762582c42">Deployed — view on BscScan</a>.</span></td></tr>
         <tr><td>Agent ID</td><td><code>0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F</code><br><span class="fine">SPACE ID .ai Agent ID registry — mint requires a balance here.</span></td></tr>
         <tr><td>Supply</td><td>1,111 &middot; max 11 per wallet (1 free + 10 paid) &middot; royalty 5%</td></tr>
       </table>
@@ -567,7 +567,7 @@ $("connectBtn").addEventListener("click", async function(){
   }catch(e){ $("mintNote").textContent = "Wallet connection was cancelled."; }
 });
 $("mintBtn").addEventListener("click", async function(){
-  if(PREVIEW){ $("mintNote").textContent = "Preview — mint opens after deploy. The contracts above are predicted addresses."; return; }
+  if(PREVIEW){ $("mintNote").textContent = "Preview — mint opens 20:00 UTC."; return; }
   if(!window.ethereum){ $("mintNote").textContent = "No wallet found in this browser."; return; }
   try{
     if(!connected){
@@ -595,7 +595,7 @@ $("mintBtn").addEventListener("click", async function(){
 });
 if(PREVIEW){
   $("mintBtn").disabled = true;
-  $("mintNote").textContent = "Preview — mint opens after deploy.";
+  $("mintNote").textContent = "Preview — mint opens 20:00 UTC.";
   $("previewBanner").style.display = "block";
 }else{
   $("previewBanner").style.display = "none";

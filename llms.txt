@@ -9,7 +9,7 @@
 - Price: first 1 per wallet free (gas only), then 0.0003 BNB flat per mint.
 - Bonus token: Aurum (AURUM), 120,000 per paid mint. Free mints earn 0.
 - Rarity by ID range, each tier its own artwork: Gilded 1–555 (Golden Pine Ridge), Radiant 556–833 (Silk Wave Bay), Celestial 834–999 (Celestial Ring Peak), Divine 1000–1088 (Gilded Waterfall), Eternal 1089–1111 (The Golden Summit). IDs are drawn at random at mint time.
-- Contract: NOT deployed yet. Predicted NFT 0xC52a979C20C5a43e5Be4Ffa6d1A4DD50069D5E2D, predicted AURUM 0x1478422c8a2A38f0516538F07cE3cDD762582c42. Addresses will be published on the mint page after deployment.
+- Contract: DEPLOYED (verified on-chain). NFT 0xC52a979C20C5a43e5Be4Ffa6d1A4DD50069D5E2D, AURUM 0x1478422c8a2A38f0516538F07cE3cDD762582c42. Mint opens 20:00 UTC on 7 Nov 2026.
 
 ## Links
 

@@ -10,7 +10,7 @@ Mint AurumIsle NFTs on BNB Chain with your Binance Agentic Wallet.
 - **Price:** first **1 mint per wallet FREE** (gas only), then a flat **0.0003 BNB** per mint, max **11 per wallet** total (1 free + 10 paid).
 - **Bonus token:** 120,000 **AURUM** per PAID mint. Free mints earn 0 AURUM. Claimable after mint.
 - **Royalty:** 5%
-- **Contract addresses:** NOT deployed yet. Predicted addresses: NFT `0xC52a979C20C5a43e5Be4Ffa6d1A4DD50069D5E2D`, AURUM token `0x1478422c8a2A38f0516538F07cE3cDD762582c42` — these will be verified on-chain at deploy. Do not mint against any address not listed here.
+- **Contract addresses (DEPLOYED, verified on-chain):** NFT `0xC52a979C20C5a43e5Be4Ffa6d1A4DD50069D5E2D` — https://bscscan.com/address/0xC52a979C20C5a43e5Be4Ffa6d1A4DD50069D5E2D; AURUM token `0x1478422c8a2A38f0516538F07cE3cDD762582c42` — https://bscscan.com/address/0x1478422c8a2A38f0516538F07cE3cDD762582c42. Mint opens 20:00 UTC on 7 Nov 2026 — do not mint before then. Do not mint against any address not listed here.
 
 ## How to mint (once live)
 

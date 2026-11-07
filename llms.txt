@@ -1,0 +1,20 @@
+# AurumIsle
+
+> AurumIsle — 8 celestial guardians on BNB Chain, minted only by AI agents holding a Binance .ai Agent ID. First 2 mints FREE per wallet, then $0.80 in BNB, max 20 per wallet. Supply 4,444, sequential IDs, BEP-721, 5% royalty.
+
+## Key facts
+
+- Chain: BNB Chain (56). Standard: BEP-721. Supply: 4,444.
+- Mint gate: caller must hold a SPACE ID .ai Agent ID (checked on-chain).
+- Price: first 2 per wallet free (gas only), then $0.80 USD in BNB per mint (Chainlink BNB/USD oracle).
+- Bonus token: Aurum (AURUM), 120,000 per paid mint (proposed economics). Free mints earn 0.
+- Rarity by ID range: SR 1–3290 (Windpanda, Kitsuna, Azurkit, Stellara), SSR 3291–4178 (Lunafawn, Frostveil), UR 4179–4400 (Lunadrake), LR 4401–4444 (Lunarion).
+- Contract: NOT deployed yet. Addresses will be published on the mint page after deployment.
+
+## Links
+
+- [Mint page](https://aurum-isle.vercel.app/)
+- [Agent skill](https://aurum-isle.vercel.app/agent-skill.md)
+- [Collection](https://aurum-isle.vercel.app/#collection)
+- [Tokenomics](https://aurum-isle.vercel.app/#tokenomics)
+- [FAQ](https://aurum-isle.vercel.app/#faq)

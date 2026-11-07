@@ -1,0 +1,598 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Aurum Isle — 1,111 Floating Isles of Gold · BNB Chain</title>
+<meta name="description" content="Aurum Isle: 1,111 floating isles of gold on BNB Chain. First mint FREE, then 0.0003 BNB. Agent-only mint. Every paid mint earns 120,000 AURUM.">
+<meta property="og:title" content="Aurum Isle — 1,111 Floating Isles of Gold">
+<meta property="og:description" content="First mint FREE, then 0.0003 BNB. Agent-only. 120,000 AURUM per paid mint.">
+<meta property="og:image" content="https://aurum-isle.vercel.app/assets/hero.jpg">
+<meta property="og:url" content="https://aurum-isle.vercel.app/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;800&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#04030a;--bg2:#0b0918;--card:#0e0b1c;--gold:#e8c268;--gold-dim:#8a6d2f;--ink:#f5efe0;--muted:#b3a98f;--blue:#7fa8d9;--deep-blue:#1a2a4a;--silk:#f5efe0;--line:#2a2340}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--ink);font-family:'Inter',system-ui,sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+a{color:var(--gold)}
+h1,h2,h3{font-family:'Cinzel',Georgia,serif;line-height:1.2}
+/* ---- deep-space background: starfield canvas + silk nebulae ---- */
+#spaceCanvas{position:fixed;inset:0;z-index:0;pointer-events:none}
+.nebula{position:fixed;border-radius:50%;filter:blur(70px);pointer-events:none;z-index:0}
+.nebula.n1{width:62vw;height:62vw;top:-22vw;left:-14vw;background:radial-gradient(circle,rgba(232,194,104,.34),transparent 65%);opacity:.55}
+.nebula.n2{width:56vw;height:56vw;top:8vh;right:-18vw;background:radial-gradient(circle,rgba(58,90,138,.55),transparent 65%);opacity:.6}
+.nebula.n3{width:48vw;height:48vw;bottom:-16vw;left:22vw;background:radial-gradient(circle,rgba(245,239,224,.16),transparent 65%);opacity:.5}
+.nebula.n4{width:34vw;height:34vw;top:52vh;left:-10vw;background:radial-gradient(circle,rgba(127,168,217,.30),transparent 65%);opacity:.5}
+.wrap{max-width:1060px;margin:0 auto;padding:0 18px;position:relative;z-index:1}
+header{position:sticky;top:0;z-index:50;background:rgba(4,3,10,.88);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+header .wrap{display:flex;align-items:center;gap:14px;padding:10px 18px}
+.logo{display:flex;align-items:center;gap:9px;font-family:'Cinzel',Georgia,serif;font-weight:800;font-size:17px;color:var(--gold);text-decoration:none;letter-spacing:.04em}
+.logo .ring-dot{width:24px;height:24px;border-radius:50%;border:3px solid var(--gold);box-shadow:0 0 12px rgba(232,194,104,.7);flex:none;position:relative}
+.logo .ring-dot::after{content:"";position:absolute;inset:5px;border-radius:50%;background:var(--gold)}
+header nav{margin-left:auto;display:flex;gap:4px;align-items:center}
+header nav a{color:var(--muted);text-decoration:none;font-size:13.5px;font-weight:600;padding:7px 9px;border-radius:8px}
+header nav a:hover{color:var(--ink)}
+.btn{display:inline-block;background:var(--gold);color:#1a1206;font-weight:800;border:none;border-radius:10px;padding:11px 18px;font-size:15px;cursor:pointer;text-decoration:none;text-align:center}
+.btn:hover{filter:brightness(1.08)}
+.btn-ghost{background:transparent;color:var(--gold);border:1.5px solid var(--gold-dim)}
+.btn-sm{padding:8px 13px;font-size:13.5px}
+.btn[disabled]{opacity:.45;cursor:not-allowed}
+.preview-banner{background:#3a2c07;color:#ffe9a8;text-align:center;font-size:13.5px;font-weight:700;padding:9px 14px;border-bottom:1px solid #6b5316;position:relative;z-index:1}
+.hero{position:relative;padding:34px 0 8px}
+.hero .art{border:2px solid var(--gold-dim);border-radius:18px;overflow:hidden;box-shadow:0 0 70px rgba(232,194,104,.22),0 0 120px rgba(58,90,138,.28)}
+.hero .art img{display:block;width:100%;height:auto}
+.hero h1{font-size:clamp(38px,11vw,64px);margin:22px 0 4px;color:var(--gold);letter-spacing:.02em;text-shadow:0 0 34px rgba(232,194,104,.35)}
+.hero h1 span{color:var(--ink)}
+.hero .tag{font-size:15px;color:var(--muted);font-weight:600;letter-spacing:.14em;text-transform:uppercase}
+.hero .lede{font-size:17px;color:#e8ddc2;max-width:640px;margin:12px 0 18px}
+.hero .lede b{color:var(--gold)}
+.hero-cta{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:8px}
+section{padding:26px 0}
+.kicker{font-size:12px;font-weight:800;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);margin-bottom:6px}
+h2{font-size:clamp(24px,6vw,32px);margin-bottom:10px}
+p{margin-bottom:10px}
+.fine{font-size:12.5px;color:var(--muted)}
+/* ---- space animation: live mint status as an orbit scene ---- */
+.orbit-widget{display:flex;gap:16px;align-items:center;flex-wrap:wrap;border:1px solid var(--gold-dim);border-radius:16px;background:linear-gradient(160deg,rgba(232,194,104,.08),rgba(4,3,10,.92));padding:18px;margin:10px 0 26px}
+.space-scene{position:relative;width:172px;height:172px;flex:none;border-radius:14px;overflow:hidden;border:1px solid var(--line);background:radial-gradient(ellipse at 50% 120%,#1a1440 0%,#0b0918 55%,#04030a 100%)}
+.space-scene .stars{position:absolute;inset:0}
+.space-scene .stars i{position:absolute;border-radius:50%;background:#fff;animation:twinkle 2.8s ease-in-out infinite}
+@keyframes twinkle{0%,100%{opacity:.25}50%{opacity:1}}
+.space-scene svg.orbit-svg{position:absolute;inset:0;width:100%;height:100%}
+.orbit-track{fill:none;stroke:#2a2340;stroke-width:5}
+.orbit-fill{fill:none;stroke:var(--gold);stroke-width:5;stroke-linecap:round;transform:rotate(-90deg);transform-origin:100px 100px;filter:drop-shadow(0 0 6px rgba(232,194,104,.9))}
+.orbit-path{fill:none;stroke:rgba(232,194,104,.35);stroke-width:1;stroke-dasharray:3 5}
+.planet{fill:url(#planetGold)}
+.planet-glow{position:absolute;left:50%;top:50%;width:110px;height:110px;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(circle,rgba(232,194,104,.55),transparent 65%);opacity:.3;transition:opacity .9s ease}
+.sat{fill:#ffe9a8;filter:drop-shadow(0 0 4px rgba(255,233,168,.95))}
+.comet{position:absolute;width:54px;height:2px;background:linear-gradient(90deg,transparent,rgba(245,239,224,.95));border-radius:2px;opacity:0;animation:comet 9s linear infinite}
+@keyframes comet{0%{transform:translate(190px,26px) rotate(24deg);opacity:0}4%{opacity:.95}16%{transform:translate(-30px,86px) rotate(24deg);opacity:0}100%{transform:translate(-30px,86px) rotate(24deg);opacity:0}}
+.orbit-info{flex:1;min-width:170px}
+.orbit-info .big{font-family:'Cinzel',Georgia,serif;font-size:24px;font-weight:800;color:var(--gold);line-height:1.15}
+.orbit-info .big small{font-size:14px;color:var(--muted);font-family:'Inter',sans-serif;font-weight:600}
+.orbit-info .sub{font-size:13px;color:var(--muted);margin-top:3px}
+.orbit-info .price{font-size:13.5px;font-weight:700;color:var(--blue);margin-top:7px}
+.orbit-info .phase{font-size:12px;color:var(--gold);font-weight:700;letter-spacing:.08em;text-transform:uppercase;margin-top:3px}
+@media(prefers-reduced-motion:reduce){.space-scene .stars i,.comet{animation:none}.comet{display:none}}
+.grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:6px 0 26px}
+.grid4 .stat{background:rgba(14,11,28,.85);border:1px solid var(--line);border-radius:14px;padding:14px 12px;text-align:center}
+.grid4 .stat .k{font-size:11.5px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.grid4 .stat .v{font-family:'Cinzel',Georgia,serif;font-size:23px;font-weight:800;color:var(--gold);margin-top:4px}
+.grid4 .stat .s{font-size:12px;color:var(--muted);margin-top:2px}
+@media(max-width:640px){.grid4{grid-template-columns:repeat(2,1fr)}}
+.flow{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:8px 0 6px}
+@media(max-width:640px){.flow{grid-template-columns:1fr}}
+.flow .step{background:rgba(14,11,28,.85);border:1px solid var(--line);border-radius:14px;padding:16px}
+.flow .step .n{font-family:'Cinzel',Georgia,serif;font-size:26px;color:var(--gold);font-weight:800}
+.flow .step h3{font-size:18px;margin:4px 0 6px}
+.flow .step p{font-size:14.5px;color:#d8cdb2}
+.card{background:rgba(14,11,28,.88);border:1px solid var(--line);border-radius:16px;padding:18px;margin-bottom:14px}
+.card h3{font-size:19px;margin-bottom:8px}
+.card p{font-size:14.5px;color:#d8cdb2}
+.tiers{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}
+@media(max-width:860px){.tiers{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:420px){.tiers{grid-template-columns:1fr}}
+.tier{background:rgba(14,11,28,.88);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+.tier img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}
+.tier .t-body{padding:12px}
+.tier .t-name{font-family:'Cinzel',Georgia,serif;font-weight:800;font-size:16px;color:var(--gold)}
+.tier .t-range{font-size:13px;color:var(--muted);font-weight:700}
+.tier .t-vista{font-size:13px;color:#d8cdb2;margin-top:4px}
+.mint-box{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+@media(max-width:640px){.mint-box{grid-template-columns:1fr}}
+.qty-row{display:flex;align-items:center;gap:10px;margin:10px 0}
+.qty-row button{width:42px;height:42px;border-radius:10px;border:1px solid var(--gold-dim);background:transparent;color:var(--gold);font-size:20px;font-weight:800;cursor:pointer}
+.qty-row .qty{font-family:'Cinzel',Georgia,serif;font-size:26px;font-weight:800;min-width:52px;text-align:center}
+input[type=text],input[type=number]{width:100%;background:#0d0a06;border:1px solid var(--line);color:var(--ink);border-radius:10px;padding:11px 12px;font-size:15px;font-family:'Inter',sans-serif}
+input:focus{outline:2px solid var(--gold-dim)}
+.codebox{background:#050403;border:1px solid var(--line);border-radius:12px;padding:14px;font-size:13px;line-height:1.55;white-space:pre-wrap;word-break:break-word;color:#e8ddc2;font-family:ui-monospace,Menlo,monospace}
+.faq details{background:rgba(14,11,28,.88);border:1px solid var(--line);border-radius:12px;padding:13px 15px;margin-bottom:9px}
+.faq summary{font-weight:700;cursor:pointer;font-size:15px}
+.faq p{font-size:14.5px;color:#d8cdb2;margin:8px 0 2px}
+.support-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:640px){.support-grid{grid-template-columns:1fr}}
+.support-card{background:rgba(14,11,28,.88);border:1px solid var(--line);border-radius:14px;padding:16px}
+.support-card h3{font-size:18px;margin-bottom:6px}
+.support-card p{font-size:14px;color:#d8cdb2}
+.contract-table{width:100%;border-collapse:collapse;font-size:14px}
+.contract-table td{padding:9px 4px;border-bottom:1px solid var(--line);vertical-align:top}
+.contract-table td:first-child{color:var(--muted);font-weight:700;width:110px}
+.contract-table code{word-break:break-all;font-size:13px}
+footer{border-top:1px solid var(--line);padding:26px 0 40px;margin-top:10px;position:relative;z-index:1}
+footer .f-logo{font-family:'Cinzel',Georgia,serif;color:var(--gold);font-size:16px;font-weight:800;margin-bottom:6px}
+footer p{font-size:13.5px;color:var(--muted)}
+footer a{color:var(--gold)}
+</style>
+</head>
+<body id="top">
+<canvas id="spaceCanvas" aria-hidden="true"></canvas>
+<div class="nebula n1" aria-hidden="true"></div>
+<div class="nebula n2" aria-hidden="true"></div>
+<div class="nebula n3" aria-hidden="true"></div>
+<div class="nebula n4" aria-hidden="true"></div>
+<header>
+  <div class="wrap">
+    <a class="logo" href="#top"><span class="ring-dot"></span>Aurum Isle</a>
+    <nav>
+      <a href="#tiers">Tiers</a>
+      <a href="#agents">Agents</a>
+      <a href="#contract">Contract</a>
+      <a class="btn btn-sm" href="#mint" style="margin-left:6px">Mint</a>
+    </nav>
+  </div>
+</header>
+<div class="preview-banner" id="previewBanner">PREVIEW — contracts are predicted, mint opens after deploy. Nothing here mints yet.</div>
+
+<main class="wrap">
+  <!-- HERO -->
+  <section class="hero">
+    <div class="art"><img src="assets/hero.jpg" alt="Aurum Isle — a floating isle of gold between heaven and earth"></div>
+    <div class="tag">1,111 &middot; Agent-only &middot; BNB Chain</div>
+    <h1>AURUM <span>ISLE</span></h1>
+    <p class="lede">A floating isle of gold between heaven and earth. Your <b>first mint is FREE</b> — then <b>0.0003 BNB</b> each, up to <b>11 per wallet</b>. Every paid mint earns <b>120,000 AURUM</b>. Minted only by AI agents holding a Binance <b>.ai Agent ID</b>.</p>
+    <div class="hero-cta">
+      <button class="btn" id="heroAgentBtn" type="button">&#129302; Mint with your agent</button>
+      <a class="btn btn-ghost" href="#mint">Mint now</a>
+    </div>
+  </section>
+
+  <!-- SPACE STATUS — the live mint count as an orbit scene -->
+  <div class="orbit-widget" id="orbitWidget">
+    <div class="space-scene" aria-hidden="true">
+      <div class="stars" id="sceneStars"></div>
+      <div class="planet-glow" id="planetGlow"></div>
+      <svg class="orbit-svg" viewBox="0 0 200 200">
+        <defs>
+          <radialGradient id="planetGold" cx="38%" cy="32%" r="75%">
+            <stop offset="0%" stop-color="#fff6d8"/>
+            <stop offset="45%" stop-color="#f2d47e"/>
+            <stop offset="100%" stop-color="#a87e28"/>
+          </radialGradient>
+        </defs>
+        <circle class="orbit-track" cx="100" cy="100" r="78"/>
+        <circle id="orbitFill" class="orbit-fill" cx="100" cy="100" r="78" stroke-dasharray="490.1" stroke-dashoffset="490.1"/>
+        <ellipse class="orbit-path" cx="100" cy="100" rx="88" ry="34"/>
+        <circle class="planet" cx="100" cy="100" r="34"/>
+        <circle class="sat" r="4" cx="12" cy="100">
+          <animateMotion dur="14s" repeatCount="indefinite" path="M 12,100 a 88,34 0 1,0 176,0 a 88,34 0 1,0 -176,0"/>
+        </circle>
+      </svg>
+      <div class="comet"></div>
+    </div>
+    <div class="orbit-info">
+      <div class="big"><span id="liveMinted">—</span> <small>/ 1,111 minted</small></div>
+      <div class="sub" id="ringSub">Live count from the contract.</div>
+      <div class="price">First mint FREE &middot; then 0.0003 BNB &middot; 120,000 AURUM per paid mint</div>
+      <div class="phase" id="ringPhase">Preview &middot; mint hasn&rsquo;t opened</div>
+    </div>
+  </div>
+
+  <!-- LIVE STATS -->
+  <div class="grid4" id="liveStats">
+    <div class="stat"><div class="k">Supply</div><div class="v">1,111</div><div class="s">sequential ids</div></div>
+    <div class="stat"><div class="k">Price</div><div class="v" style="font-size:19px">0.0003 BNB</div><div class="s">after 1 free</div></div>
+    <div class="stat"><div class="k">Free</div><div class="v">1 / wallet</div><div class="s">max 11 / wallet</div></div>
+    <div class="stat"><div class="k">Bonus token</div><div class="v" style="font-size:19px">120,000 AURUM</div><div class="s">per paid mint*</div></div>
+  </div>
+  <p class="fine" id="statNote" style="margin-top:0">Live stats read from the contract. *120,000 AURUM per paid mint, claimable on-chain.</p>
+
+  <!-- PHASES -->
+  <section>
+    <div class="kicker">How it works</div>
+    <h2>Free first, then gold</h2>
+    <div class="flow">
+      <div class="step"><div class="n">01</div><h3>First mint — FREE</h3><p>One free mint per Agent ID wallet. Gas only. Your isle is drawn from the 1,111 — Common to Mythic.</p></div>
+      <div class="step"><div class="n">02</div><h3>Mints #2–11 — 0.0003 BNB</h3><p>Each further mint costs a flat 0.0003 BNB (about $0.21). Every paid mint also earns 120,000 AURUM, claimable on-chain.</p></div>
+    </div>
+  </section>
+
+  <!-- FOR AI AGENTS -->
+  <section id="agents">
+    <div class="kicker">For AI Agents</div>
+    <h2>&#129302; Mint with your agent</h2>
+    <p>Aurum Isle mints only through the Binance Agentic Wallet. An agent needs a <b>.ai Agent ID</b> (SPACE ID) on its wallet. First mint is FREE, then 0.0003 BNB each, up to 11 per wallet.</p>
+    <div class="mint-box">
+      <div class="card">
+        <h3>Check your Agent ID</h3>
+        <p>Paste a wallet address to check its Agent ID balance.</p>
+        <input type="text" id="agentAddr" placeholder="0x..." autocomplete="off">
+        <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
+          <button class="btn btn-sm" id="checkAgentBtn" type="button">Check Agent ID</button>
+          <button class="btn btn-ghost btn-sm" id="useMyAddrBtn" type="button">Use my wallet</button>
+        </div>
+        <p class="fine" id="agentResult" style="margin-top:10px"></p>
+        <h3 style="margin-top:18px">Already minted</h3>
+        <p>How many Aurum Isles has this wallet minted (0–11)?</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <button class="btn btn-ghost btn-sm" id="checkMintedBtn" type="button">Check minted</button>
+          <span class="fine" id="mintedResult" style="align-self:center"></span>
+        </div>
+      </div>
+      <div class="card">
+        <h3>Copyable agent prompt</h3>
+        <p>Give this to your agent. It mints with the Binance Agentic Wallet.</p>
+        <div class="codebox" id="agentPrompt">Mint Aurum Isle NFTs on BNB Chain (chain 56).
+Contract: 0xa1BbAd66B2443e2892AeE8F73564723009C67b5b
+First mint per wallet is FREE, then 0.0003 BNB each, max 11 per wallet.
+Call mint(uint256 qty) with the exact quote from quoteFor(wallet, qty).
+My wallet already minted: 0. I want to mint: 1.
+Each paid mint earns 120,000 AURUM (claimable on-chain).</div>
+        <div style="display:flex;gap:10px;margin-top:10px;flex-wrap:wrap">
+          <button class="btn btn-sm" id="copyPromptBtn" type="button">Copy prompt</button>
+          <span class="fine" id="copyNote" style="align-self:center"></span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TIERS -->
+  <section id="tiers">
+    <div class="kicker">The five vistas</div>
+    <h2>One isle, five rarities</h2>
+    <p>Every token shows the same floating isle. Rarity is decided by token id — drawn in order, 1 to 1,111.</p>
+    <div class="tiers">
+      <div class="tier"><img src="assets/hero.jpg" alt="Common — Golden Pine Ridge" loading="lazy"><div class="t-body"><div class="t-name">Common</div><div class="t-range">1 – 555 &middot; 555</div><div class="t-vista">Golden Pine Ridge</div></div></div>
+      <div class="tier"><img src="assets/hero.jpg" alt="Rare — Silk Wave Bay" loading="lazy"><div class="t-body"><div class="t-name">Rare</div><div class="t-range">556 – 833 &middot; 278</div><div class="t-vista">Silk Wave Bay</div></div></div>
+      <div class="tier"><img src="assets/hero.jpg" alt="Epic — Celestial Ring Peak" loading="lazy"><div class="t-body"><div class="t-name">Epic</div><div class="t-range">834 – 999 &middot; 166</div><div class="t-vista">Celestial Ring Peak</div></div></div>
+      <div class="tier"><img src="assets/hero.jpg" alt="Legendary — Gilded Waterfall" loading="lazy"><div class="t-body"><div class="t-name">Legendary</div><div class="t-range">1000 – 1088 &middot; 89</div><div class="t-vista">Gilded Waterfall</div></div></div>
+      <div class="tier"><img src="assets/hero.jpg" alt="Mythic — The Golden Summit" loading="lazy"><div class="t-body"><div class="t-name">Mythic</div><div class="t-range">1089 – 1111 &middot; 23</div><div class="t-vista">The Golden Summit</div></div></div>
+    </div>
+  </section>
+
+  <!-- CHECK A TOKEN -->
+  <section>
+    <div class="kicker">Check a token</div>
+    <h2>What did you get?</h2>
+    <div class="card">
+      <p>Enter a token id (1–1,111) to see its tier and vista.</p>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <input type="number" id="tokenId" min="1" max="1111" placeholder="e.g. 42" style="max-width:200px">
+        <button class="btn btn-sm" id="checkTokenBtn" type="button">Check token</button>
+      </div>
+      <p class="fine" id="tokenResult" style="margin-top:10px"></p>
+    </div>
+  </section>
+
+  <!-- MINT -->
+  <section id="mint">
+    <div class="kicker">Mint live</div>
+    <h2>Mint your isle</h2>
+    <div class="card">
+      <p>First mint per wallet is <b>FREE</b>. Mints #2–11 cost <b>0.0003 BNB</b> each. Every paid mint earns <b>120,000 AURUM</b> — claimable on-chain after mint. Agent-only: your wallet needs a .ai Agent ID.</p>
+      <div class="qty-row">
+        <button type="button" id="qtyMinus" aria-label="Fewer">&minus;</button>
+        <span class="qty" id="qty">1</span>
+        <button type="button" id="qtyPlus" aria-label="More">+</button>
+        <span class="fine" id="qtyPrice" style="margin-left:6px">FREE &middot; 1 mint</span>
+      </div>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <button class="btn" id="mintBtn" type="button">Mint now</button>
+        <button class="btn btn-ghost" id="connectBtn" type="button">Connect wallet</button>
+      </div>
+      <p class="fine" id="mintNote" style="margin-top:10px"></p>
+    </div>
+  </section>
+
+  <!-- CONTRACT -->
+  <section id="contract">
+    <div class="kicker">Contract</div>
+    <h2>Live contracts — predicted, deploys on launch</h2>
+    <div class="card">
+      <table class="contract-table">
+        <tr><td>Network</td><td>BNB Chain (chain 56)</td></tr>
+        <tr><td>NFT</td><td><code>0xa1BbAd66B2443e2892AeE8F73564723009C67b5b</code><br><span class="fine">Aurum Isle (AURISLE) — predicted address, verified at deploy.</span></td></tr>
+        <tr><td>Token</td><td><code>0x1478422c8a2A38f0516538F07cE3cDD762582c42</code><br><span class="fine">Aurum (AURUM) — 1B total: 540M bonus pool, 460M treasury. Predicted address.</span></td></tr>
+        <tr><td>Agent ID</td><td><code>0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F</code><br><span class="fine">SPACE ID .ai Agent ID registry — mint requires a balance here.</span></td></tr>
+        <tr><td>Supply</td><td>1,111 &middot; max 11 per wallet (1 free + 10 paid) &middot; royalty 5%</td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- HONEST RULES -->
+  <section>
+    <div class="kicker">Honest rules</div>
+    <h2>No promises, just the isle</h2>
+    <div class="card">
+      <p>No financial return is promised. No fake mint counts, no fake deadlines. Minted counts on this page come from the contract, never from a counter we type by hand. AURUM is a bonus for paid mints — it has no price until someone builds a market for it, and that may never happen.</p>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="kicker">FAQ</div>
+    <h2>Questions</h2>
+    <details><summary>How do I mint?</summary><p>Connect a wallet that holds a .ai Agent ID, or mint with your AI agent through the Binance Agentic Wallet. Your first mint is free — gas only.</p></details>
+    <details><summary>What is AURUM?</summary><p>AURUM is a BEP-20 bonus token. Each paid mint earns 120,000 AURUM, claimable on-chain from the token contract. Free mints earn none. Max 1,200,000 AURUM per wallet.</p></details>
+    <details><summary>Can I mint from a normal wallet (MetaMask)?</summary><p>The mint button works from any wallet, but the contract only accepts mints from wallets holding a .ai Agent ID. Without one, the transaction reverts.</p></details>
+    <details><summary>Can I resell my isle?</summary><p>Yes — it is a standard transferable BEP-721. It can be listed on NFT marketplaces once they index the collection. Royalty is 5% where the marketplace honors it.</p></details>
+    <details><summary>Why 1,111?</summary><p>Small supply, one striking artwork, five rarity tiers. The pattern follows the sold-out 1,111 collections: free first mint, a cheap paid price, and a token that pays per paid mint.</p></details>
+  </section>
+
+  <!-- SUPPORT -->
+  <section id="support">
+    <div class="kicker">Support</div>
+    <h2>Spread the word</h2>
+    <div class="support-grid">
+      <div class="support-card">
+        <h3>Post on X</h3>
+        <p>There is no official X account — buyers and supporters post for us. Tap below to share the live mint count on X.</p>
+        <button class="btn btn-ghost" id="shareBtn" type="button">Share on X</button>
+      </div>
+      <div class="support-card">
+        <h3>Honest rules</h3>
+        <p>No financial return is promised. No fake mint counts, no fake deadlines. Minted counts on this page come from the contract, never from a counter we type by hand.</p>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>
+  <div class="wrap">
+    <div class="f-logo">Aurum Isle</div>
+    <p>One floating isle of gold, 1,111 guardians, minted by agents under a golden ring.<br>&copy; 2026 Aurum Isle. A collectible art project on BNB Chain. Nothing here is a promise of financial return.</p>
+  </div>
+</footer>
+<script>
+(function(){
+"use strict";
+var PREVIEW = true;
+var CONTRACT = "0xa1BbAd66B2443e2892AeE8F73564723009C67b5b";
+var TOKEN = "0x1478422c8a2A38f0516538F07cE3cDD762582c42";
+var REGISTRY = "0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F";
+var RPCS = ["https://bsc-dataseed1.defibit.io/","https://bsc-dataseed.binance.org/","https://bsc-dataseed1.ninicoin.io/"];
+var TOTAL_SEL = "0xa2309ff8"; /* totalMinted() */
+var MINTOPEN_SEL = "0x24bbd049"; /* mintOpen() */
+var QUOTE_SEL = "0x51b27bad"; /* quoteFor(address,uint256) */
+var MINT_SEL = "0xa0712d68"; /* mint(uint256) */
+var MINTEDOF_SEL = "0x617692dd"; /* mintedOf(address) */
+var BALANCE_SEL = "0x70a08231"; /* balanceOf(address) */
+var MAX_SUPPLY = 1111, FREE_PER_WALLET = 1, MAX_PER_WALLET = 11;
+var PRICE_WEI = 300000000000000n; /* 0.0003 BNB */
+var BASE = "https://aurum-isle.vercel.app/metadata/";
+var ORBIT_C = 490.1; /* 2*pi*78 */
+function $(id){ return document.getElementById(id); }
+function hex(n){ return "0x" + n.toString(16); }
+function padAddr(a){ return "0".repeat(24) + a.replace(/^0x/,"").toLowerCase(); }
+
+/* ---- deep-space starfield canvas (twinkling stars, slow drift) ---- */
+(function starfield(){
+  var cv = $("spaceCanvas");
+  if(!cv || !cv.getContext) return;
+  var ctx = cv.getContext("2d");
+  var stars = [], W = 0, H = 0, reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  function resize(){
+    W = cv.width = window.innerWidth;
+    H = cv.height = window.innerHeight;
+    stars = [];
+    var n = Math.min(170, Math.floor(W * H / 9000));
+    for(var i = 0; i < n; i++){
+      stars.push({x: Math.random() * W, y: Math.random() * H,
+        r: Math.random() * 1.3 + 0.3,
+        p: Math.random() * Math.PI * 2,
+        s: 0.4 + Math.random() * 1.2,
+        gold: Math.random() < 0.22, blue: Math.random() < 0.18});
+    }
+  }
+  function draw(t){
+    ctx.clearRect(0, 0, W, H);
+    for(var i = 0; i < stars.length; i++){
+      var st = stars[i];
+      var a = 0.35 + 0.65 * Math.abs(Math.sin(t / 1000 * st.s + st.p));
+      ctx.globalAlpha = a;
+      ctx.fillStyle = st.gold ? "#f2d47e" : st.blue ? "#7fa8d9" : "#ffffff";
+      ctx.beginPath();
+      ctx.arc(st.x, st.y, st.r, 0, Math.PI * 2);
+      ctx.fill();
+    }
+    ctx.globalAlpha = 1;
+    if(!reduced) requestAnimationFrame(draw);
+  }
+  resize();
+  window.addEventListener("resize", resize);
+  draw(0);
+})();
+
+/* ---- twinkling stars inside the orbit scene ---- */
+(function sceneStars(){
+  var box = $("sceneStars");
+  if(!box) return;
+  for(var i = 0; i < 22; i++){
+    var s = document.createElement("i");
+    var sz = (Math.random() * 2 + 1).toFixed(1);
+    s.style.left = (Math.random() * 96).toFixed(1) + "%";
+    s.style.top = (Math.random() * 96).toFixed(1) + "%";
+    s.style.width = sz + "px";
+    s.style.height = sz + "px";
+    s.style.animationDelay = (Math.random() * 2.8).toFixed(2) + "s";
+    s.style.animationDuration = (2 + Math.random() * 2.4).toFixed(2) + "s";
+    if(Math.random() < 0.3) s.style.background = "#f2d47e";
+    box.appendChild(s);
+  }
+})();
+
+async function rpcCall(to, data){
+  for(var i=0;i<RPCS.length;i++){
+    try{
+      var c = new AbortController();
+      var t = setTimeout(function(){ c.abort(); }, 10000);
+      var r = await fetch(RPCS[i], {method:"POST", headers:{"Content-Type":"application/json"},
+        body: JSON.stringify({jsonrpc:"2.0", id:1, method:"eth_call", params:[{to:to, data:data}, "latest"]}), signal:c.signal});
+      clearTimeout(t);
+      var j = await r.json();
+      if(j && j.result) return j.result;
+    }catch(e){ /* try next RPC */ }
+  }
+  return null;
+}
+function tierOf(id){
+  if(id<=555) return ["Common","Golden Pine Ridge"];
+  if(id<=833) return ["Rare","Silk Wave Bay"];
+  if(id<=999) return ["Epic","Celestial Ring Peak"];
+  if(id<=1088) return ["Legendary","Gilded Waterfall"];
+  return ["Mythic","The Golden Summit"];
+}
+var liveMinted = null;
+async function readLive(){
+  var total = await rpcCall(CONTRACT, TOTAL_SEL);
+  if(total === null){ $("statNote").textContent = "Contract not deployed yet — preview numbers. Live stats appear after launch."; return; }
+  liveMinted = parseInt(total, 16);
+  var open = await rpcCall(CONTRACT, MINTOPEN_SEL);
+  var isOpen = open && parseInt(open, 16) === 1;
+  $("liveMinted").textContent = liveMinted.toLocaleString("en-US");
+  var fill = liveMinted / MAX_SUPPLY;
+  $("orbitFill").style.strokeDashoffset = (ORBIT_C * (1 - fill)).toFixed(1);
+  $("planetGlow").style.opacity = (0.3 + 0.7 * fill).toFixed(2);
+  $("ringSub").textContent = (MAX_SUPPLY - liveMinted).toLocaleString("en-US") + " isles left · live from the contract.";
+  $("ringPhase").textContent = liveMinted === 0 ? "Empty orbit · mint is open · be the first"
+    : liveMinted >= MAX_SUPPLY ? "Sold out · the orbit is full"
+    : "Mint is open · the orbit is filling";
+  if(!isOpen) $("ringPhase").textContent = "Mint hasn\u2019t opened yet";
+  if(!PREVIEW){
+    $("mintBtn").disabled = !isOpen;
+    $("mintNote").textContent = isOpen ? "" : "Mint is closed right now.";
+  }
+}
+function updateQty(){
+  var q = parseInt($("qty").textContent, 10);
+  var paid = Math.max(0, q - FREE_PER_WALLET);
+  $("qtyPrice").textContent = (paid === 0 ? "FREE" : (Number(PRICE_WEI * BigInt(paid)) / 1e18).toFixed(4) + " BNB") + " · " + q + (q === 1 ? " mint" : " mints");
+}
+$("qtyMinus").addEventListener("click", function(){
+  var q = parseInt($("qty").textContent, 10);
+  if(q > 1){ $("qty").textContent = q - 1; updateQty(); }
+});
+$("qtyPlus").addEventListener("click", function(){
+  var q = parseInt($("qty").textContent, 10);
+  if(q < MAX_PER_WALLET){ $("qty").textContent = q + 1; updateQty(); }
+});
+$("heroAgentBtn").addEventListener("click", function(){
+  document.getElementById("agents").scrollIntoView({behavior:"smooth"});
+});
+$("checkAgentBtn").addEventListener("click", async function(){
+  var a = $("agentAddr").value.trim();
+  if(!/^0x[0-9a-fA-F]{40}$/.test(a)){ $("agentResult").textContent = "Enter a valid 0x wallet address."; return; }
+  $("agentResult").textContent = "Checking…";
+  var r = await rpcCall(REGISTRY, BALANCE_SEL + padAddr(a));
+  if(r === null){ $("agentResult").textContent = "Could not reach the chain — try again."; return; }
+  var bal = parseInt(r, 16);
+  $("agentResult").textContent = bal > 0 ? "This wallet holds a .ai Agent ID — it can mint." : "No Agent ID on this wallet — it cannot mint yet.";
+});
+$("useMyAddrBtn").addEventListener("click", async function(){
+  if(!window.ethereum){ $("agentResult").textContent = "No wallet in this browser."; return; }
+  try{
+    var accs = await window.ethereum.request({method:"eth_requestAccounts"});
+    $("agentAddr").value = accs[0];
+    $("checkAgentBtn").click();
+  }catch(e){ $("agentResult").textContent = "Wallet connection was cancelled."; }
+});
+$("checkMintedBtn").addEventListener("click", async function(){
+  var a = $("agentAddr").value.trim();
+  if(!/^0x[0-9a-fA-F]{40}$/.test(a)){ $("mintedResult").textContent = "Enter a wallet address first."; return; }
+  $("mintedResult").textContent = "Checking…";
+  var r = await rpcCall(CONTRACT, MINTEDOF_SEL + padAddr(a));
+  if(r === null){ $("mintedResult").textContent = "Could not reach the chain."; return; }
+  var n = parseInt(r, 16);
+  $("mintedResult").textContent = n + " / 11 minted" + (n === 0 ? " — first mint FREE." : n >= 11 ? " — wallet is full." : " — " + (11 - n) + " left, next costs 0.0003 BNB.");
+});
+$("copyPromptBtn").addEventListener("click", async function(){
+  var t = $("agentPrompt").textContent;
+  try{ await navigator.clipboard.writeText(t); $("copyNote").textContent = "Copied."; }
+  catch(e){
+    var ta = document.createElement("textarea"); ta.value = t; document.body.appendChild(ta); ta.select();
+    try{ document.execCommand("copy"); $("copyNote").textContent = "Copied."; }catch(e2){ $("copyNote").textContent = "Copy failed — select the text manually."; }
+    document.body.removeChild(ta);
+  }
+});
+$("checkTokenBtn").addEventListener("click", async function(){
+  var id = parseInt($("tokenId").value, 10);
+  if(!id || id < 1 || id > MAX_SUPPLY){ $("tokenResult").textContent = "Enter an id between 1 and 1,111."; return; }
+  var t = tierOf(id);
+  $("tokenResult").textContent = "Token #" + id + " is " + t[0] + " — " + t[1] + ".";
+  if(liveMinted !== null && id > liveMinted){ $("tokenResult").textContent += " Not minted yet."; return; }
+  try{
+    var r = await fetch(BASE + id);
+    if(r.ok){ var m = await r.json(); $("tokenResult").textContent = "Token #" + id + " — " + m.attributes[0].value + " · " + m.attributes[1].value + " · " + m.attributes[2].value + "."; }
+  }catch(e){ /* metadata fetch is best-effort */ }
+});
+var shareBtn = $("shareBtn");
+if(shareBtn){
+  shareBtn.addEventListener("click", function(){
+    var text = liveMinted === null
+      ? "Aurum Isle \u2014 1,111 floating isles of gold on BNB Chain. First mint FREE, then 0.0003 BNB. Agent ID only. #AurumIsle #BNBAgents"
+      : "Aurum Isle \u2014 " + liveMinted + " / 1,111 minted. First mint FREE, then 0.0003 BNB. Minted by AI agents on BNB Chain. #AurumIsle #BNBAgents";
+    var url = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(text) + "&url=" + encodeURIComponent(window.location.href);
+    window.open(url, "_blank", "noopener");
+  });
+}
+var connected = null;
+$("connectBtn").addEventListener("click", async function(){
+  if(!window.ethereum){ $("mintNote").textContent = "No wallet found in this browser — open this page in a wallet browser or install one."; return; }
+  try{
+    var accs = await window.ethereum.request({method:"eth_requestAccounts"});
+    connected = accs[0];
+    $("connectBtn").textContent = connected.slice(0,6) + "…" + connected.slice(-4);
+    $("mintNote").textContent = "Connected: " + connected;
+  }catch(e){ $("mintNote").textContent = "Wallet connection was cancelled."; }
+});
+$("mintBtn").addEventListener("click", async function(){
+  if(PREVIEW){ $("mintNote").textContent = "Preview — mint opens after deploy. The contracts above are predicted addresses."; return; }
+  if(!window.ethereum){ $("mintNote").textContent = "No wallet found in this browser."; return; }
+  try{
+    if(!connected){
+      var accs = await window.ethereum.request({method:"eth_requestAccounts"});
+      connected = accs[0];
+    }
+    var chainId = await window.ethereum.request({method:"eth_chainId"});
+    if(chainId !== "0x38"){
+      try{ await window.ethereum.request({method:"wallet_switchEthereumChain", params:[{chainId:"0x38"}]}); }
+      catch(e){
+        await window.ethereum.request({method:"wallet_addEthereumChain", params:[{chainId:"0x38", chainName:"BNB Smart Chain", nativeCurrency:{name:"BNB", symbol:"BNB", decimals:18}, rpcUrls:["https://bsc-dataseed.binance.org/"], blockExplorerUrls:["https://bscscan.com/"]}]});
+      }
+    }
+    var qty = parseInt($("qty").textContent, 10);
+    var quote = await rpcCall(CONTRACT, QUOTE_SEL + padAddr(connected) + hex(qty).slice(2).padStart(64, "0"));
+    if(quote === null){ $("mintNote").textContent = "Could not read the price — try again."; return; }
+    var value = hex(BigInt(quote));
+    $("mintNote").textContent = "Confirm the mint in your wallet…";
+    var txHash = await window.ethereum.request({method:"eth_sendTransaction", params:[{from:connected, to:CONTRACT, value:value, data:MINT_SEL + hex(qty).slice(2).padStart(64, "0")}]});
+    $("mintNote").textContent = "Mint sent: " + txHash + " — wait for confirmation, then check your token below.";
+    readLive();
+  }catch(e){
+    $("mintNote").textContent = "Mint failed or was cancelled: " + (e && e.message ? e.message.slice(0, 160) : e);
+  }
+});
+if(PREVIEW){
+  $("mintBtn").disabled = true;
+  $("mintNote").textContent = "Preview — mint opens after deploy.";
+  $("previewBanner").style.display = "block";
+}else{
+  $("previewBanner").style.display = "none";
+}
+updateQty();
+readLive();
+setInterval(readLive, 30000);
+})();
+</script>
+</body>
+</html>

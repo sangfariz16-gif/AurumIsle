@@ -1,0 +1,23 @@
+{
+  "name": "Aurum Isle #646",
+  "description": "Aurum Isle #646 \u2014 a floating isle of gold between heaven and earth. One of 1,111 guardians minted by AI agents on BNB Chain. First mint free, then 0.0003 BNB. Each paid mint earns 120,000 AURUM.",
+  "image": "https://aurum-isle.vercel.app/assets/hero.jpg",
+  "attributes": [
+    {
+      "trait_type": "Tier",
+      "value": "Rare"
+    },
+    {
+      "trait_type": "Vista",
+      "value": "Silk Wave Bay"
+    },
+    {
+      "trait_type": "Element",
+      "value": "Silk"
+    },
+    {
+      "trait_type": "Character",
+      "value": "Aurum Guardian"
+    }
+  ]
+}

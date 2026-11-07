@@ -191,7 +191,7 @@ footer a{color:var(--gold)}
 
   <!-- LIVE STATS -->
   <div class="grid4" id="liveStats">
-    <div class="stat"><div class="k">Supply</div><div class="v">1,111</div><div class="s">sequential ids</div></div>
+    <div class="stat"><div class="k">Supply</div><div class="v">1,111</div><div class="s">random draw</div></div>
     <div class="stat"><div class="k">Price</div><div class="v" style="font-size:19px">0.0003 BNB</div><div class="s">after 1 free</div></div>
     <div class="stat"><div class="k">Free</div><div class="v">1 / wallet</div><div class="s">max 11 / wallet</div></div>
     <div class="stat"><div class="k">Bonus token</div><div class="v" style="font-size:19px">120,000 AURUM</div><div class="s">per paid mint*</div></div>
@@ -234,8 +234,9 @@ footer a{color:var(--gold)}
         <h3>Copyable agent prompt</h3>
         <p>Give this to your agent. It mints with the Binance Agentic Wallet.</p>
         <div class="codebox" id="agentPrompt">Mint Aurum Isle NFTs on BNB Chain (chain 56).
-Contract: 0xa1BbAd66B2443e2892AeE8F73564723009C67b5b
+Contract: 0xC52a979C20C5a43e5Be4Ffa6d1A4DD50069D5E2D
 First mint per wallet is FREE, then 0.0003 BNB each, max 11 per wallet.
+Token IDs are drawn at random (swap-and-pop); any mint can land any tier.
 Call mint(uint256 qty) with the exact quote from quoteFor(wallet, qty).
 My wallet already minted: 0. I want to mint: 1.
 Each paid mint earns 120,000 AURUM (claimable on-chain).</div>
@@ -251,13 +252,13 @@ Each paid mint earns 120,000 AURUM (claimable on-chain).</div>
   <section id="tiers">
     <div class="kicker">The five vistas</div>
     <h2>One isle, five rarities</h2>
-    <p>Every token shows the same floating isle. Rarity is decided by token id — drawn in order, 1 to 1,111.</p>
+    <p>Each rarity has its own artwork. Rarity is decided by token id — and your id is drawn at random, so any mint can land any tier, Common to Mythic.</p>
     <div class="tiers">
-      <div class="tier"><img src="assets/hero.jpg" alt="Common — Golden Pine Ridge" loading="lazy"><div class="t-body"><div class="t-name">Common</div><div class="t-range">1 – 555 &middot; 555</div><div class="t-vista">Golden Pine Ridge</div></div></div>
-      <div class="tier"><img src="assets/hero.jpg" alt="Rare — Silk Wave Bay" loading="lazy"><div class="t-body"><div class="t-name">Rare</div><div class="t-range">556 – 833 &middot; 278</div><div class="t-vista">Silk Wave Bay</div></div></div>
-      <div class="tier"><img src="assets/hero.jpg" alt="Epic — Celestial Ring Peak" loading="lazy"><div class="t-body"><div class="t-name">Epic</div><div class="t-range">834 – 999 &middot; 166</div><div class="t-vista">Celestial Ring Peak</div></div></div>
-      <div class="tier"><img src="assets/hero.jpg" alt="Legendary — Gilded Waterfall" loading="lazy"><div class="t-body"><div class="t-name">Legendary</div><div class="t-range">1000 – 1088 &middot; 89</div><div class="t-vista">Gilded Waterfall</div></div></div>
-      <div class="tier"><img src="assets/hero.jpg" alt="Mythic — The Golden Summit" loading="lazy"><div class="t-body"><div class="t-name">Mythic</div><div class="t-range">1089 – 1111 &middot; 23</div><div class="t-vista">The Golden Summit</div></div></div>
+      <div class="tier"><img src="assets/tier-common.jpg" alt="Common — Golden Pine Ridge" loading="lazy"><div class="t-body"><div class="t-name">Common</div><div class="t-range">1 – 555 &middot; 555</div><div class="t-vista">Golden Pine Ridge</div></div></div>
+      <div class="tier"><img src="assets/tier-rare.jpg" alt="Rare — Silk Wave Bay" loading="lazy"><div class="t-body"><div class="t-name">Rare</div><div class="t-range">556 – 833 &middot; 278</div><div class="t-vista">Silk Wave Bay</div></div></div>
+      <div class="tier"><img src="assets/tier-epic.jpg" alt="Epic — Celestial Ring Peak" loading="lazy"><div class="t-body"><div class="t-name">Epic</div><div class="t-range">834 – 999 &middot; 166</div><div class="t-vista">Celestial Ring Peak</div></div></div>
+      <div class="tier"><img src="assets/tier-legendary.jpg" alt="Legendary — Gilded Waterfall" loading="lazy"><div class="t-body"><div class="t-name">Legendary</div><div class="t-range">1000 – 1088 &middot; 89</div><div class="t-vista">Gilded Waterfall</div></div></div>
+      <div class="tier"><img src="assets/tier-mythic.jpg" alt="Mythic — The Golden Summit" loading="lazy"><div class="t-body"><div class="t-name">Mythic</div><div class="t-range">1089 – 1111 &middot; 23</div><div class="t-vista">The Golden Summit</div></div></div>
     </div>
   </section>
 
@@ -302,7 +303,7 @@ Each paid mint earns 120,000 AURUM (claimable on-chain).</div>
     <div class="card">
       <table class="contract-table">
         <tr><td>Network</td><td>BNB Chain (chain 56)</td></tr>
-        <tr><td>NFT</td><td><code>0xa1BbAd66B2443e2892AeE8F73564723009C67b5b</code><br><span class="fine">Aurum Isle (AURISLE) — predicted address, verified at deploy.</span></td></tr>
+        <tr><td>NFT</td><td><code>0xC52a979C20C5a43e5Be4Ffa6d1A4DD50069D5E2D</code><br><span class="fine">Aurum Isle (AURISLE) — predicted address, verified at deploy.</span></td></tr>
         <tr><td>Token</td><td><code>0x1478422c8a2A38f0516538F07cE3cDD762582c42</code><br><span class="fine">Aurum (AURUM) — 1B total: 540M bonus pool, 460M treasury. Predicted address.</span></td></tr>
         <tr><td>Agent ID</td><td><code>0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F</code><br><span class="fine">SPACE ID .ai Agent ID registry — mint requires a balance here.</span></td></tr>
         <tr><td>Supply</td><td>1,111 &middot; max 11 per wallet (1 free + 10 paid) &middot; royalty 5%</td></tr>
@@ -327,7 +328,7 @@ Each paid mint earns 120,000 AURUM (claimable on-chain).</div>
     <details><summary>What is AURUM?</summary><p>AURUM is a BEP-20 bonus token. Each paid mint earns 120,000 AURUM, claimable on-chain from the token contract. Free mints earn none. Max 1,200,000 AURUM per wallet.</p></details>
     <details><summary>Can I mint from a normal wallet (MetaMask)?</summary><p>The mint button works from any wallet, but the contract only accepts mints from wallets holding a .ai Agent ID. Without one, the transaction reverts.</p></details>
     <details><summary>Can I resell my isle?</summary><p>Yes — it is a standard transferable BEP-721. It can be listed on NFT marketplaces once they index the collection. Royalty is 5% where the marketplace honors it.</p></details>
-    <details><summary>Why 1,111?</summary><p>Small supply, one striking artwork, five rarity tiers. The pattern follows the sold-out 1,111 collections: free first mint, a cheap paid price, and a token that pays per paid mint.</p></details>
+    <details><summary>Why 1,111?</summary><p>Small supply, five distinct artworks — one per rarity tier. The pattern follows the sold-out 1,111 collections: free first mint, a cheap paid price, and a token that pays per paid mint.</p></details>
   </section>
 
   <!-- SUPPORT -->
@@ -357,7 +358,7 @@ Each paid mint earns 120,000 AURUM (claimable on-chain).</div>
 (function(){
 "use strict";
 var PREVIEW = true;
-var CONTRACT = "0xa1BbAd66B2443e2892AeE8F73564723009C67b5b";
+var CONTRACT = "0xC52a979C20C5a43e5Be4Ffa6d1A4DD50069D5E2D";
 var TOKEN = "0x1478422c8a2A38f0516538F07cE3cDD762582c42";
 var REGISTRY = "0x60B9262456dE011F7d15a54CdD8c48bAaa8B022F";
 var RPCS = ["https://bsc-dataseed1.defibit.io/","https://bsc-dataseed.binance.org/","https://bsc-dataseed1.ninicoin.io/"];

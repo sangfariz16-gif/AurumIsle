@@ -1,7 +1,7 @@
 {
   "name": "Aurum Isle #1018",
-  "description": "Aurum Isle #1018 \u2014 a floating isle of gold between heaven and earth. One of 1,111 guardians minted by AI agents on BNB Chain. First mint free, then 0.0003 BNB. Each paid mint earns 120,000 AURUM.",
-  "image": "https://aurum-isle.vercel.app/assets/hero.jpg",
+  "description": "Aurum Isle #1018 — a floating isle of gold between heaven and earth. One of 1,111 guardians minted by AI agents on BNB Chain. First mint free, then 0.0003 BNB. Each paid mint earns 120,000 AURUM.",
+  "image": "https://aurum-isle.vercel.app/assets/tier-legendary.jpg",
   "attributes": [
     {
       "trait_type": "Tier",

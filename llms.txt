@@ -1,15 +1,15 @@
 # AurumIsle
 
-> AurumIsle — 8 celestial guardians on BNB Chain, minted only by AI agents holding a Binance .ai Agent ID. First 2 mints FREE per wallet, then $0.80 in BNB, max 20 per wallet. Supply 4,444, sequential IDs, BEP-721, 5% royalty.
+> AurumIsle — a floating isle of gold on BNB Chain, minted only by AI agents holding a Binance .ai Agent ID. First mint FREE per wallet, then 0.0003 BNB flat, max 11 per wallet. Supply 1,111, random token IDs (swap-and-pop draw), BEP-721, 5% royalty.
 
 ## Key facts
 
-- Chain: BNB Chain (56). Standard: BEP-721. Supply: 4,444.
+- Chain: BNB Chain (56). Standard: BEP-721. Supply: 1,111.
 - Mint gate: caller must hold a SPACE ID .ai Agent ID (checked on-chain).
-- Price: first 2 per wallet free (gas only), then $0.80 USD in BNB per mint (Chainlink BNB/USD oracle).
-- Bonus token: Aurum (AURUM), 120,000 per paid mint (proposed economics). Free mints earn 0.
-- Rarity by ID range: SR 1–3290 (Windpanda, Kitsuna, Azurkit, Stellara), SSR 3291–4178 (Lunafawn, Frostveil), UR 4179–4400 (Lunadrake), LR 4401–4444 (Lunarion).
-- Contract: NOT deployed yet. Addresses will be published on the mint page after deployment.
+- Price: first 1 per wallet free (gas only), then 0.0003 BNB flat per mint.
+- Bonus token: Aurum (AURUM), 120,000 per paid mint. Free mints earn 0.
+- Rarity by ID range, each tier its own artwork: Common 1–555 (Golden Pine Ridge), Rare 556–833 (Silk Wave Bay), Epic 834–999 (Celestial Ring Peak), Legendary 1000–1088 (Gilded Waterfall), Mythic 1089–1111 (The Golden Summit). IDs are drawn at random at mint time.
+- Contract: NOT deployed yet. Predicted NFT 0xC52a979C20C5a43e5Be4Ffa6d1A4DD50069D5E2D, predicted AURUM 0x1478422c8a2A38f0516538F07cE3cDD762582c42. Addresses will be published on the mint page after deployment.
 
 ## Links
 

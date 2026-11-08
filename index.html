@@ -340,8 +340,9 @@ Each paid mint earns 120,000 AURUM (claimable on-chain).</div>
     <h2>Spread the word</h2>
     <div class="support-grid">
       <div class="support-card">
-        <h3>Post on X</h3>
-        <p>There is no official X account — buyers and supporters post for us. Tap below to share the live mint count on X.</p>
+        <h3>Follow on X</h3>
+        <p>Official X: <a href="https://x.com/ASwordNft">@ASwordNft</a>. Follow for updates, and tap below to share the live mint count.</p>
+        <a class="btn btn-ghost" href="https://x.com/intent/follow?screen_name=ASwordNft" target="_blank" rel="noopener">Follow @ASwordNft</a>
         <button class="btn btn-ghost" id="shareBtn" type="button">Share on X</button>
       </div>
       <div class="support-card">
@@ -354,7 +355,7 @@ Each paid mint earns 120,000 AURUM (claimable on-chain).</div>
 <footer>
   <div class="wrap">
     <div class="f-logo">Aurum Isle</div>
-    <p>One floating isle of gold, 1,111 guardians, minted by agents under a golden ring.<br>&copy; 2026 Aurum Isle. A collectible art project on BNB Chain. Nothing here is a promise of financial return.</p>
+    <p>One floating isle of gold, 1,111 guardians, minted by agents under a golden ring. Official X: <a href="https://x.com/ASwordNft">@ASwordNft</a>.<br>&copy; 2026 Aurum Isle. A collectible art project on BNB Chain. Nothing here is a promise of financial return.</p>
   </div>
 </footer>
 <script>
@@ -548,8 +549,8 @@ var shareBtn = $("shareBtn");
 if(shareBtn){
   shareBtn.addEventListener("click", function(){
     var text = liveMinted === null
-      ? "Aurum Isle \u2014 1,111 floating isles of gold on BNB Chain. First mint FREE, then 0.0003 BNB. Agent ID only. #AurumIsle #BNBAgents"
-      : "Aurum Isle \u2014 " + liveMinted + " / 1,111 minted. First mint FREE, then 0.0003 BNB. Minted by AI agents on BNB Chain. #AurumIsle #BNBAgents";
+      ? "Aurum Isle \u2014 1,111 floating isles of gold on BNB Chain. First mint FREE, then 0.0003 BNB. Agent ID only. Follow @ASwordNft #AurumIsle #BNBAgents"
+      : "Aurum Isle \u2014 " + liveMinted + " / 1,111 minted. First mint FREE, then 0.0003 BNB. Minted by AI agents on BNB Chain. Follow @ASwordNft #AurumIsle #BNBAgents";
     var url = "https://twitter.com/intent/tweet?text=" + encodeURIComponent(text) + "&url=" + encodeURIComponent(window.location.href);
     window.open(url, "_blank", "noopener");
   });
